@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" ng-app="todoApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Todo List</title>
+    <!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+    <link rel="stylesheet" href="app.css" />-->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="app.js"></script>
+  </head>
+ <body ng-controller = "ShowController as showctrl">
+
+
+      <form name="newEvent" ng-submit="showctrl.add(showctrl.list)">
+        <h4>Todo List</h4>
+
+          <textarea ng-model="showctrl.event.content" placeholder="What you are to do next?" title="New event"></textarea>
+
+          <input type="submit" value="Submit event" />
+      </form>
+
+
+      <ul>
+        <li ng-repeat="event in showctrl.list | filter:showctrl.choice">
+            <p>Content: {{event.content}}</p>
+            <p>Complete: {{event.complete}}</p>
+            <button ng-click="showctrl.change(event)">Mark</button>
+            <button ng-click="showctrl.remove($index)">Remove</button>
+
+        </li>
+      </ul>
+
+      <p>{{(showctrl.list | filter:false).length}} events left</p>  
+
+      <select name="Select" ng-model="showctrl.choice">
+        <option value="">all</option> 
+        <option value="true">completed</option>
+        <option value="false">active</option>
+      </select><br>
+
+
+
+
+  </body>

@@ -1,0 +1,33 @@
+
+<h1>Todo List</h1>
+
+<!--  Add Event Form --> 
+<form name="add" ng-submit="addEvent()">
+    <input type="text" ng-model="event.content" placeholder="What you are to do next?" title="New event">
+    <input type="submit" value="Submit event">
+</form>
+
+<div>
+  <!--<select class = "monitor-events" name="Select" ng-model="choice.complete">
+    <option value="">all</option> 
+    <option value="true">completed</option>
+    <option value="false">active</option>
+  </select>-->
+  <p class = "monitor-events">{{(events | filter:false).length}} events left</p>
+  <input type="button" class = "monitor-events" value="Complete" ng-click="choice.complete=true">
+  <input type="button" class = "monitor-events" value="All" ng-click="choice.complete=''">
+  <input type="button" class = "monitor-events" value="Active" ng-click="choice.complete=false">
+</div>
+
+
+<!--  Events Form --> 
+<ul id='todo-list'>
+  <li ng-repeat="event in events | filter:choice">
+  		<span ng-style="event.color">{{event.content}}</span>
+      <input ng-style="event.color" type="text" ng-model="event.content">
+      <input type="button" value="Remove" ng-click="remove($index)">
+      <input type="button" value="Mark" ng-click="change(event)">
+      <!--<button ng-click="change(event)">Mark</button>
+      <button ng-click="remove($index)">Remove</button>-->
+  </li>
+</ul>
